@@ -38,17 +38,20 @@ const randomColor = () => `rgb(${random})`;
 //Value of input (number)  ==== how many divs will create function createBoxes
 //I need to connect value of input with renderBtn
 
-refs.controls.addEventListener('input', onInput);
+refs.controls.addEventListener('submit', (e)=> {
 
-function onInput(event){
-    refs.renderBtn =  event.currentTarget.value;
-    refs.controls.value = refs.renderBtn;
-    console.log(event.currentTarget.value);
-}
+    e.preventDefault();
+    console.log(e.target.children);
+
+
+    [...e.target.children].forEach(el =>{
+        createBoxes(amount);
+    })
+})
 
 
 // Connecting 'Create Button' with 'createBoxes Function'
-refs.renderBtn.addEventListener('change', createBoxes(refs.controls.value));
+// refs.renderBtn.addEventListener('change', createBoxes(refs.controls.value));
 
 createBoxes(amount){
     let divMarkup = refs.boxes.insertAdjacentHTML("afterbegin", `<div style='color:randomColor(), width:30px, height:30px'> `)
