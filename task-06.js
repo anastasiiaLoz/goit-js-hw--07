@@ -12,7 +12,13 @@ validationInput.addEventListener('blur', onInputBlur);
 
 function onInputBlur(event) {
     // console.log('Blur');
-    validationInput.value.length >= 6 
-    ? validationInput.classList.add('valid')  
-    : validationInput.classList.add('invalid')
+    if(validationInput.value.length === 6 ){
+        validationInput.classList.add('valid') 
+        validationInput.classList.remove('invalid')
+        }
+        else {
+        validationInput.classList.add('invalid') 
+        validationInput.classList.remove('valid')
+        }
+
 }

@@ -1,15 +1,3 @@
-
-
-//-----------------------------\\
-//------- В  ПРОЦЕССЕ !!!!-----\\
-//-----------------------------\\
-
-
-
-
-
-
-
 //========= Задача 8 ==========
 // Напиши скрипт создания и очистки коллекции элементов. Пользователь вводит количество элементов в input и нажимает кнопку Создать, после чего рендерится коллекция. При нажатии на кнопку Очистить, коллекция элементов очищается.
 
@@ -24,37 +12,38 @@
 
 
 const refs = {
+    input: document.querySelector('#controls>input'),
     controls: document.querySelector('#controls'),
     boxes: document.querySelector('#boxes'),
-    renderBtn: document.getElementsByTagName('button')[2],
-    destroyBtn: document.getElementsByTagName('button')[3],
+    renderBtn: document.querySelector('[data-action="render"]'),
+    destroyBtn: document.querySelector('[data-action="destroy"]'),
 }
+
 
 //Random Color Function Generator
 const random = Math.round(Math.random()*255);
-const randomColor = () => `rgb(${random})`;
-
-
-//Value of input (number)  ==== how many divs will create function createBoxes
-//I need to connect value of input with renderBtn
-
-refs.controls.addEventListener('submit', (e)=> {
-
-    e.preventDefault();
-    console.log(e.target.children);
-
-
-    [...e.target.children].forEach(el =>{
-        createBoxes(amount);
-    })
-})
-
-
-// Connecting 'Create Button' with 'createBoxes Function'
-// refs.renderBtn.addEventListener('change', createBoxes(refs.controls.value));
-
-createBoxes(amount){
-    let divMarkup = refs.boxes.insertAdjacentHTML("afterbegin", `<div style='color:randomColor(), width:30px, height:30px'> `)
-    console.log(divMarkup);
+const randomColor = () => {
+    return `rgb(${Math.round(Math.random()*255)}, ${Math.round(Math.random()*255)}, ${Math.round(Math.random()*255)})`
 }
 
+
+const defaultSize = 30;
+const createBoxes = (amount) => {
+    destroyBoxes()
+    for (let i=0; i<amount; i++){
+        const markup = document.createElement('div');
+        console.log(markup);
+        const size = defaultSize + i*10;
+        const color = randomColor();
+
+        markup.style.cssText = `width: ${size}px; height: ${size}px; background-color: ${color}`
+        refs.boxes.appendChild(markup)
+    }
+}
+
+const destroyBoxes = ()=> {
+    refs.boxes.innerHTML = ''
+}
+
+refs.renderBtn.addEventListener('click', () => createBoxes(+refs.input.value))
+refs.destroyBtn.addEventListener('click', destroyBoxes)
