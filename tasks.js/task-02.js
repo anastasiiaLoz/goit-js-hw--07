@@ -20,7 +20,10 @@ let newArr = ingredients.map(el => {
 
     const elLi = document.createElement('li');
     elLi.textContent = el;
-    arr.appendChild(elLi);
+    
     return elLi
 });
+
+arr.append(...newArr)
+
 console.log(newArr);

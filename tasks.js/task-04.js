@@ -10,8 +10,8 @@
 
 const refs = {
     value: document.querySelector('#value'),
-    btnIncrement: document.getElementsByTagName('button')[0],
-    btnDecrement: document.getElementsByTagName('button')[1],
+    btnIncrement: document.querySelector('[data-action="decrement"]'),
+    btnDecrement: document.querySelector('[data-action="increment"]'),
 }
 
 // console.log(refs.value);

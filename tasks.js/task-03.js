@@ -36,13 +36,14 @@ const images = [
           'https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         alt: 'Orange and White Koi Fish Near Yellow Koi Fish',
       },
-   
+
   ];
 
   const galleryMarkup = document.querySelector('#gallery');
-
+  
   images.forEach(el =>{
-    let imageMarkup = galleryMarkup.insertAdjacentHTML("afterbegin", `<li class="pictures"><img src=${el.url} alt=${el.alt}</img></li>`);
+    let imageMarkup = `<li class="pictures"><img src=${el.url} alt=${el.alt}</img></li>`
+    galleryMarkup.insertAdjacentHTML("afterbegin", imageMarkup);
   })
 
-    console.log(galleryMarkup);
+  console.log(galleryMarkup);
